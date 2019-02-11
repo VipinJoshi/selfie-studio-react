@@ -1,6 +1,7 @@
 import React from "react";
 import Webcam from "react-webcam";
 import ImageFilter from "react-image-filter";
+import SelfieSteps from "./SelfieSteps";
 class Selfie extends React.Component {
   setRef = webcam => {
     this.webcam = webcam;
@@ -16,8 +17,9 @@ class Selfie extends React.Component {
 
   capture = () => {
     const screenshot = this.webcam.getScreenshot();
-    this.setState({ screenshot, step: 1 });
+    this.setState({ screenshot, step: 2 });
   };
+
 
   retake = () => {
     this.setState({ screenshot: null, step: 0, filter:"none" });
@@ -38,7 +40,13 @@ class Selfie extends React.Component {
     return (
       <div>
         <h1>Take Selfie</h1>
-        {step === 0 ? (
+        {
+          step===0?
+          <div><h1> take a selfie</h1>
+            <button onClick={()=>this.setState({step:1})}>Take selfie</button>
+          </div>:null
+        }
+        {step === 1 ? (
           <div className="webcams">
             <Webcam
               audio={false}
@@ -53,7 +61,7 @@ class Selfie extends React.Component {
           </div>
         ) : null}
 
-        {step === 1 && this.state.screenshot ? (
+        {step === 2 && this.state.screenshot ? (
           <div>
             <div className="capture-image">
             <div className="filter-box">
@@ -82,6 +90,7 @@ class Selfie extends React.Component {
             </div>
           </div>
         ) : null}
+        <SelfieSteps activeStep={step}></SelfieSteps>
       </div>
     );
   }
