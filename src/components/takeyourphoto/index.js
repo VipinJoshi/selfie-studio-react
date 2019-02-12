@@ -14,6 +14,22 @@ class Selfie extends React.Component {
       step: 0
     };
   }
+  drawImage(imageId, x, y, dWidth = 233, dHeight = 183) {
+    const c = document.getElementById("selfie");
+    const context = c.getContext("2d");
+    const img = document.getElementById(imageId);
+    context.drawImage(img, x, y, dWidth, dHeight);
+  }
+
+  downloadImage() {
+    const download = document.getElementById("download");
+    const canvas = document.getElementById("selfie");
+    download.addEventListener("click", () => {
+      download.href = canvas.toDataURL();
+      download.download = "selfie.png";
+    });
+  }
+
 
   capture = () => {
     const screenshot = this.webcam.getScreenshot();
@@ -61,33 +77,49 @@ class Selfie extends React.Component {
           </div>
         ) : null}
 
-        {step === 2 && this.state.screenshot ? (
+        {step === 2  && this.state.screenshot ? (
           <div>
-            <div className="capture-image">
-            <div className="filter-box">
-              {filter === "none" ? (
-                <ImageFilter image={this.state.screenshot} />
-              ) : (
-                <ImageFilter
-                  image={this.state.screenshot}
-                  filter={filter} // see docs beneath
-                  colorOne={[40, 250, 250]}
-                  colorTwo={[250, 150, 30]}
-                />
-              )}
-              </div>
-              <button onClick={this.retake}>Retake</button>
-              <div>
-                <button onClick={() => this.applyFilter("none")}>None</button>
-                <button onClick={() => this.applyFilter("invert")}>
-                  Invert
-                </button>
-                <button onClick={() => this.applyFilter("grayscale")}>
-                  Grayscale
-                </button>
-                <button onClick={() => this.applyFilter("sepia")}>Sepia</button>
-              </div>
-            </div>
+            <canvas
+              id="selfie"
+              width="333"
+              height="290"
+              style={{ border: "1px solid #d3d3d3" }}
+            />
+            <img
+              src={this.state.screenshot}
+              id="img1"
+              style={{ display: "none" }}
+            />
+            <img
+              src={require("./../../frame1.png")}
+              id="img2"
+              style={{ display: "none" }}
+            />
+            <img
+              src={require("./../../frame2.png")}
+              id="img3"
+              style={{ display: "none" }}
+            />
+            <p>
+              <button onClick={() => this.drawImage("img1", 10, 10, 303, 253)}>
+                Draw Image
+              </button>
+            </p>
+            <p>
+              <button onClick={() => this.drawImage("img2", 0,0,333,290)}>
+                Draw Frame
+              </button>
+            </p>
+            <p>
+              <button onClick={() => this.drawImage("img3", 0,0,333,290)}>
+                Draw Frame2
+              </button>
+            </p>
+            <p>
+              <a id="download" onClick={this.downloadImage}>
+                Download Image
+              </a>
+            </p>
           </div>
         ) : null}
         <SelfieSteps activeStep={step}></SelfieSteps>
