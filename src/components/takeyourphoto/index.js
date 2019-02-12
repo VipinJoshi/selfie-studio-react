@@ -87,21 +87,21 @@ class Selfie extends React.Component {
             />
             <img
               src={this.state.screenshot}
-              id="img1"
+              id="clickedImage"
               style={{ display: "none" }}
             />
             <img
-              src={require("./../../frame1.png")}
+              src={require("./../../images/frame1.png")}
               id="img2"
               style={{ display: "none" }}
             />
             <img
-              src={require("./../../frame2.png")}
+              src={require("./../../images/frame2.png")}
               id="img3"
               style={{ display: "none" }}
             />
             <p>
-              <button onClick={() => this.drawImage("img1", 10, 10, 303, 253)}>
+              <button onClick={() => this.drawImage("clickedImage", 10, 10, 303, 253)}>
                 Draw Image
               </button>
             </p>
