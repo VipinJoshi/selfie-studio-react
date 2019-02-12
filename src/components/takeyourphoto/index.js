@@ -1,6 +1,5 @@
 import React from "react";
 import Webcam from "react-webcam";
-import ImageFilter from "react-image-filter";
 import SelfieSteps from "./SelfieSteps";
 class Selfie extends React.Component {
   setRef = webcam => {
@@ -38,7 +37,7 @@ class Selfie extends React.Component {
 
 
   retake = () => {
-    this.setState({ screenshot: null, step: 0, filter:"none" });
+    this.setState({ screenshot: null, step: 0, filter: "none" });
   };
 
   applyFilter = filter => {
@@ -57,10 +56,10 @@ class Selfie extends React.Component {
       <div>
         <h1>Take Selfie</h1>
         {
-          step===0?
-          <div><h1> take a selfie</h1>
-            <button onClick={()=>this.setState({step:1})}>Take selfie</button>
-          </div>:null
+          step === 0 ?
+            <div><h1> take a selfie</h1>
+              <button onClick={() => this.setState({ step: 1 })}>Take selfie</button>
+            </div> : null
         }
         {step === 1 ? (
           <div className="webcams">
@@ -77,7 +76,7 @@ class Selfie extends React.Component {
           </div>
         ) : null}
 
-        {step === 2  && this.state.screenshot ? (
+        {step === 2 && this.state.screenshot ? (
           <div>
             <canvas
               id="selfie"
@@ -106,12 +105,12 @@ class Selfie extends React.Component {
               </button>
             </p>
             <p>
-              <button onClick={() => this.drawImage("img2", 0,0,333,290)}>
+              <button onClick={() => this.drawImage("img2", 0, 0, 333, 290)}>
                 Draw Frame
               </button>
             </p>
             <p>
-              <button onClick={() => this.drawImage("img3", 0,0,333,290)}>
+              <button onClick={() => this.drawImage("img3", 0, 0, 333, 290)}>
                 Draw Frame2
               </button>
             </p>
