@@ -2,6 +2,7 @@ import React from "react";
 import Webcam from "react-webcam";
 import SelfieSteps from "./SelfieSteps";
 import Canvas from "./Canvas";
+import "./index.css";
 class Selfie extends React.Component {
   setRef = webcam => {
     this.webcam = webcam;
@@ -15,39 +16,10 @@ class Selfie extends React.Component {
       isFrameSet: false
     };
   }
-  drawImage(imageId, x, y, dWidth = 233, dHeight = 183, type) {
-    const c = document.getElementById("selfie");
-    const context = c.getContext("2d");
-    if (context) {
-      const img = document.getElementById(imageId);
-      debugger;
-      if (type === "frame" && this.state.isFrameSet) {
-        context.clearRect(0, 0, c.width, c.height);
-        context.restore();
-        this.drawImage("clickedImage", 10, 10, 303, 253);
-        context.drawImage(img, x, y, dWidth, dHeight);
-      } else {
-        context.drawImage(img, x, y, dWidth, dHeight);
-        if (type === "frame") {
-          this.setState({ isFrameSet: true });
-        }
-      }
-    }
-  }
-
-  downloadImage() {
-    const download = document.getElementById("download");
-    const canvas = document.getElementById("selfie");
-    download.addEventListener("click", () => {
-      download.href = canvas.toDataURL();
-      download.download = "selfie.png";
-    });
-  }
-
+  
   capture = () => {
     const screenshot = this.webcam.getScreenshot();
     this.setState({ screenshot, step: 2 }, () => {
-      debugger;
       // this.drawImage("clickedImage", 10, 10, 303, 253);
     });
 
@@ -63,7 +35,7 @@ class Selfie extends React.Component {
     this.setState({ filter });
   };
 
- 
+
 
   render() {
     const videoConstraints = {
@@ -73,38 +45,98 @@ class Selfie extends React.Component {
     };
     const { step, filter = "none" } = this.state;
     return (
-      <div>
-        <h1>Take Selfie</h1>
-        {step === 0 ? (
-          <div>
-            <h1> take a selfie</h1>
-            <button onClick={() => this.setState({ step: 1 })}>
-              Take selfie
-            </button>
-          </div>
-        ) : null}
-        {step === 1 ? (
-          <div className="webcams">
-            <Webcam
-              audio={false}
-              height={450}
-              ref={this.setRef}
-              screenshotFormat="image/jpeg"
-              width={450}
-              videoConstraints={videoConstraints}
-            />
+      // <div className="container-fluid portrait">
+      //   <img src={require("./../../images/bg.png")}></img>
 
-            <button onClick={this.capture}>Capture photo</button>
-          </div>
-        ) : null}
+      // </div>
+      <div className="container-fluid">
+        <div className="bg">
+          <div className="row">
+            <div className="col">
+              <div className="mobile-bg">
+                {
+                  step === 0 ? (
+                    <div className="row">
+                      <div className="col">
+                        <div className="first-screen">
+                          <div className="col-xl-6 col-lg-6 col-md-6 col-xs-12 ">
+                            <div className="first-screen-text-position">
+                              <p className="first-screen-text-heading">
+                                Update Your Profile Picture</p>
+                              <p classNamr="first-screen-text-heading">
+                              With Real-Time Filters
+                        </p>
+                        <div>
+                        <button
+                    className="btn btn-selfie"
+                    type="submit" onClick={() => this.setState({ step: 1 })}
+                  >
+                    TAKE SELFIE
+                  </button>
+                          </div>
+                        </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  ) : null}
 
-        {step === 2 && this.state.screenshot ? (
-          <div>
-             <Canvas image={this.state.screenshot}/>
+              </div>
+            </div>
           </div>
-        ) : null}
-        <SelfieSteps activeStep={step} />
+          <div className="row">
+            <SelfieSteps activeStep={step} />
+          </div>
+        </div>
       </div>
+      //       <div>
+      //         <div className="col-xl-12 col-lg-12 col-md-12">
+      //           <div className="row">
+
+      //             <div className="app-container">
+      //               <div className="row m-2">
+      //                 <div className="class col-xl-12 col-md-12">
+      //                 <div className="parent">
+      //                   <div className="frame-container">
+      // <div className="inner-content"> take selfie</div>
+      //                   </div>
+      //                 </div>
+      //                 </div>
+      //               </div>
+      //               <h1>Take Selfie</h1>
+      //               {step === 0 ? (
+      //                 <div>
+      //                   <h1> take a selfie</h1>
+      //                   <button onClick={() => this.setState({ step: 1 })}>
+      //                     Take selfie
+      //             </button>
+      //                 </div>
+      //               ) : null}
+      //               {step === 1 ? (
+      //                 <div className="webcams">
+      //                   <Webcam
+      //                     audio={false}
+      //                     height={450}
+      //                     ref={this.setRef}
+      //                     screenshotFormat="image/jpeg"
+      //                     width={450}
+      //                     videoConstraints={videoConstraints}
+      //                   />
+
+      //                   <button onClick={this.capture}>Capture photo</button>
+      //                 </div>
+      //               ) : null}
+
+      //               {step === 2 && this.state.screenshot ? (
+      //                 <div>
+      //                   <Canvas image={this.state.screenshot} />
+      //                 </div>
+      //               ) : null}
+      //               <SelfieSteps activeStep={step} />
+      //             </div>
+      //           </div>
+      //         </div>
+      //       </div>
     );
   }
 }
