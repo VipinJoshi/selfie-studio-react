@@ -1,6 +1,7 @@
 import React from "react";
 import Webcam from "react-webcam";
 import SelfieSteps from "./SelfieSteps";
+import Canvas from "./Canvas";
 class Selfie extends React.Component {
   setRef = webcam => {
     this.webcam = webcam;
@@ -10,14 +11,28 @@ class Selfie extends React.Component {
     super(props);
     this.state = {
       screenshot: null,
-      step: 0
+      step: 0,
+      isFrameSet: false
     };
   }
-  drawImage(imageId, x, y, dWidth = 233, dHeight = 183) {
+  drawImage(imageId, x, y, dWidth = 233, dHeight = 183, type) {
     const c = document.getElementById("selfie");
     const context = c.getContext("2d");
-    const img = document.getElementById(imageId);
-    context.drawImage(img, x, y, dWidth, dHeight);
+    if (context) {
+      const img = document.getElementById(imageId);
+      debugger;
+      if (type === "frame" && this.state.isFrameSet) {
+        context.clearRect(0, 0, c.width, c.height);
+        context.restore();
+        this.drawImage("clickedImage", 10, 10, 303, 253);
+        context.drawImage(img, x, y, dWidth, dHeight);
+      } else {
+        context.drawImage(img, x, y, dWidth, dHeight);
+        if (type === "frame") {
+          this.setState({ isFrameSet: true });
+        }
+      }
+    }
   }
 
   downloadImage() {
@@ -29,12 +44,16 @@ class Selfie extends React.Component {
     });
   }
 
-
   capture = () => {
     const screenshot = this.webcam.getScreenshot();
-    this.setState({ screenshot, step: 2 });
-  };
+    this.setState({ screenshot, step: 2 }, () => {
+      debugger;
+      // this.drawImage("clickedImage", 10, 10, 303, 253);
+    });
 
+    //this.drawImage("clickedImage", 10, 10, 303, 253);
+
+  };
 
   retake = () => {
     this.setState({ screenshot: null, step: 0, filter: "none" });
@@ -44,8 +63,9 @@ class Selfie extends React.Component {
     this.setState({ filter });
   };
 
+ 
+
   render() {
-    console.log("Home");
     const videoConstraints = {
       width: 1280,
       height: 720,
@@ -55,12 +75,14 @@ class Selfie extends React.Component {
     return (
       <div>
         <h1>Take Selfie</h1>
-        {
-          step === 0 ?
-            <div><h1> take a selfie</h1>
-              <button onClick={() => this.setState({ step: 1 })}>Take selfie</button>
-            </div> : null
-        }
+        {step === 0 ? (
+          <div>
+            <h1> take a selfie</h1>
+            <button onClick={() => this.setState({ step: 1 })}>
+              Take selfie
+            </button>
+          </div>
+        ) : null}
         {step === 1 ? (
           <div className="webcams">
             <Webcam
@@ -78,50 +100,10 @@ class Selfie extends React.Component {
 
         {step === 2 && this.state.screenshot ? (
           <div>
-            <canvas
-              id="selfie"
-              width="333"
-              height="290"
-              style={{ border: "1px solid #d3d3d3" }}
-            />
-            <img
-              src={this.state.screenshot}
-              id="clickedImage"
-              style={{ display: "none" }}
-            />
-            <img
-              src={require("./../../images/frame1.png")}
-              id="img2"
-              style={{ display: "none" }}
-            />
-            <img
-              src={require("./../../images/frame2.png")}
-              id="img3"
-              style={{ display: "none" }}
-            />
-            <p>
-              <button onClick={() => this.drawImage("clickedImage", 10, 10, 303, 253)}>
-                Draw Image
-              </button>
-            </p>
-            <p>
-              <button onClick={() => this.drawImage("img2", 0, 0, 333, 290)}>
-                Draw Frame
-              </button>
-            </p>
-            <p>
-              <button onClick={() => this.drawImage("img3", 0, 0, 333, 290)}>
-                Draw Frame2
-              </button>
-            </p>
-            <p>
-              <a id="download" onClick={this.downloadImage}>
-                Download Image
-              </a>
-            </p>
+             <Canvas image={this.state.screenshot}/>
           </div>
         ) : null}
-        <SelfieSteps activeStep={step}></SelfieSteps>
+        <SelfieSteps activeStep={step} />
       </div>
     );
   }
