@@ -113,98 +113,79 @@ class Canvas extends React.Component {
                         <div className="col-xl-5 col-lg-5 col-md-5 frames-box">
                             <div className="row">
                                 <div className="col-xl-6 col-lg-6 col-md-6">
-                                    <button
-                                        onClick={() => this.drawImage("img1", 0, 0, 333, 290, "frame")}
-                                    >
-                                        <div className="frame-button">
-                                            <img src={require("./../../images/frame1.png")}></img>
-                                        </div>
-                                    </button></div>
+
+                                    <div className="frame-button" onClick={() => this.drawImage("img1", 0, 0, 333, 290, "frame")}>
+                                        <img src={require("./../../images/frame1.png")}></img>
+                                    </div>
+                                </div>
                                 <div className="col-xl-6 col-lg-6 col-md-6">
-                                    <button
-                                        onClick={() => this.drawImage("img2", 0, 0, 333, 290, "frame")}
-                                    >
-                                        <div className="frame-button">
-                                            <img src={require("./../../images/frame2.png")}></img>
-                                        </div>
-                                    </button>
+
+                                    <div className="frame-button" onClick={() => this.drawImage("img2", 0, 0, 333, 290, "frame")}>
+                                        <img src={require("./../../images/frame2.png")}></img>
+                                    </div>
                                 </div>
                             </div>
 
                             <div className="row">
                                 <div className="col-xl-6 col-lg-6 col-md-6">
-                                    <button
-                                        onClick={() => this.drawImage("img3", 0, 0, 333, 290, "frame")}
-                                    >
-                                        <div className="frame-button">
-                                            <img src={require("./../../images/frame3.png")}></img>
-                                        </div>
-                                    </button></div>
+
+                                    <div className="frame-button" onClick={() => this.drawImage("img3", 0, 0, 333, 290, "frame")}>
+                                        <img src={require("./../../images/frame3.png")}></img>
+                                    </div>
+                                </div>
                                 <div className="col-xl-6 col-lg-6 col-md-6">
-                                    <button
-                                        onClick={() => this.drawImage("img4", 0, 0, 333, 290, "frame")}
-                                    >
-                                        <div className="frame-button">
-                                            <img src={require("./../../images/frame4.png")}></img>
-                                        </div>
-                                    </button></div>
+
+                                    <div className="frame-button" onClick={() => this.drawImage("img4", 0, 0, 333, 290, "frame")}>
+                                        <img src={require("./../../images/frame4.png")}></img>
+                                    </div>
+                                </div>
                             </div>
 
                             <div className="row">
                                 <div className="col-xl-6 col-lg-6 col-md-6">
-                                    <button
-                                        onClick={() => this.drawImage("img5", 0, 0, 333, 290, "frame")}
-                                    >
-                                        <div className="frame-button">
-                                            <img src={require("./../../images/frame5.png")}></img>
-                                        </div>
-                                    </button></div>
+
+                                    <div className="frame-button" onClick={() => this.drawImage("img5", 0, 0, 333, 290, "frame")}>
+                                        <img src={require("./../../images/frame5.png")}></img>
+                                    </div>
+                                </div>
                                 <div className="col-xl-6 col-lg-6 col-md-6">
-                                    <button
-                                        onClick={() => this.drawImage("img6", 0, 0, 333, 290, "frame")}
-                                    >
-                                        <div className="frame-button">
-                                            <img src={require("./../../images/frame6.png")}></img>
-                                        </div>
-                                    </button></div>
+
+                                    <div className="frame-button" onClick={() => this.drawImage("img6", 0, 0, 333, 290, "frame")}>
+                                        <img src={require("./../../images/frame6.png")}></img>
+                                    </div>
+                                </div>
                             </div>
 
                             <div className="row">
                                 <div className="col-xl-6 col-lg-6 col-md-6">
-                                    <button
-                                        onClick={() => this.drawImage("img7", 0, 0, 333, 290, "frame")}
-                                    >
-                                        <div className="frame-button">
-                                            <img src={require("./../../images/frame7.png")}></img>
-                                        </div>
-                                    </button></div>
+
+                                    <div className="frame-button" onClick={() => this.drawImage("img7", 0, 0, 333, 290, "frame")}>
+                                        <img src={require("./../../images/frame7.png")}></img>
+                                    </div>
+                                </div>
                                 <div className="col-xl-6 col-lg-6 col-md-6">
-                                    <button
+
+                                    <div className="frame-button"
                                         onClick={() => this.drawImage("img8", 0, 0, 333, 290, "frame")}
                                     >
-                                        <div className="frame-button">
-                                            <img src={require("./../../images/frame8.png")}></img>
-                                        </div>
-                                    </button></div>
+                                        <img src={require("./../../images/frame8.png")}></img>
+                                    </div>
+                                </div>
                             </div>
 
                             <div className="row">
                                 <div className="col-xl-6 col-lg-6 col-md-6">
-                                    <button
-                                        onClick={() => this.drawImage("img9", 0, 0, 333, 290, "frame")}
-                                    >
-                                        <div className="frame-button">
-                                            <img src={require("./../../images/frame9.png")}></img>
-                                        </div>
-                                    </button></div>
+
+                                    <div className="frame-button" onClick={() => this.drawImage("img9", 0, 0, 333, 290, "frame")}>
+                                        <img src={require("./../../images/frame9.png")}></img>
+                                    </div>
+                                </div>
                                 <div className="col-xl-6 col-lg-6 col-md-6">
-                                    <button
-                                        onClick={() => this.drawImage("img10", 0, 0, 333, 290, "frame")}
-                                    >
-                                        <div className="frame-button">
-                                            <img src={require("./../../images/frame10.png")}></img>
-                                        </div>
-                                    </button></div>
+
+                                    <div className="frame-button" onClick={() => this.drawImage("img10", 0, 0, 333, 290, "frame")}>
+                                        <img src={require("./../../images/frame10.png")}></img>
+                                    </div>
+                                </div>
                             </div>
 
 
