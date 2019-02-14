@@ -22,7 +22,6 @@ class Canvas extends React.Component {
         const context = c.getContext("2d");
         if (context) {
             const img = document.getElementById(imageId);
-            debugger;
             if (type === "frame" && this.state.isFrameSet) {
                 context.clearRect(0, 0, c.width, c.height);
                 context.restore();
