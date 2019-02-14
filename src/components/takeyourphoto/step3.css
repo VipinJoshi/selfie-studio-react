@@ -16,3 +16,14 @@
     overflow-y: scroll;
     height: 300px;
 }
+
+
+/****** screen 4 */
+.div-label{
+    text-align: left;
+}
+.text-input {
+  
+  border-radius: 8px;
+  
+}

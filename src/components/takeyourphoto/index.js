@@ -35,7 +35,27 @@ class Selfie extends React.Component {
     this.setState({ filter });
   };
 
-
+  checkSteps = step => {
+    switch (step) {
+      case 1: {
+        this.setState({ screenshot: null, step });
+        return;
+      }
+      case 2: {
+        this.setState({ step });
+        return;
+      }
+      case 3: {
+        alert("final")
+        this.setState({ step });
+        return;
+      }
+      default: {
+        this.retake();
+        return;
+      }
+    }
+  }
 
   render() {
     const videoConstraints = {
@@ -96,9 +116,9 @@ class Selfie extends React.Component {
                       <button onClick={this.capture}>Capture photo</button>
                     </div>
                   ) : null}
-                  {step === 2 && this.state.screenshot ? (
+                  {(step === 2 || step ===3) && this.state.screenshot ? (
                     <div>
-                      <Canvas image={this.state.screenshot} />
+                      <Canvas image={this.state.screenshot} step={step} setSteps={(steps)=>this.checkSteps(steps)}  />
                     </div>
                   ) : null}
 
@@ -111,54 +131,7 @@ class Selfie extends React.Component {
           </div>
         </div>
       </div>
-      //       <div>
-      //         <div className="col-xl-12 col-lg-12 col-md-12">
-      //           <div className="row">
 
-      //             <div className="app-container">
-      //               <div className="row m-2">
-      //                 <div className="class col-xl-12 col-md-12">
-      //                 <div className="parent">
-      //                   <div className="frame-container">
-      // <div className="inner-content"> take selfie</div>
-      //                   </div>
-      //                 </div>
-      //                 </div>
-      //               </div>
-      //               <h1>Take Selfie</h1>
-      //               {step === 0 ? (
-      //                 <div>
-      //                   <h1> take a selfie</h1>
-      //                   <button onClick={() => this.setState({ step: 1 })}>
-      //                     Take selfie
-      //             </button>
-      //                 </div>
-      //               ) : null}
-      //               {step === 1 ? (
-      //                 <div className="webcams">
-      //                   <Webcam
-      //                     audio={false}
-      //                     height={450}
-      //                     ref={this.setRef}
-      //                     screenshotFormat="image/jpeg"
-      //                     width={450}
-      //                     videoConstraints={videoConstraints}
-      //                   />
-
-      //                   <button onClick={this.capture}>Capture photo</button>
-      //                 </div>
-      //               ) : null}
-
-      //               {step === 2 && this.state.screenshot ? (
-      //                 <div>
-      //                   <Canvas image={this.state.screenshot} />
-      //                 </div>
-      //               ) : null}
-      //               <SelfieSteps activeStep={step} />
-      //             </div>
-      //           </div>
-      //         </div>
-      //       </div>
     );
   }
 }
