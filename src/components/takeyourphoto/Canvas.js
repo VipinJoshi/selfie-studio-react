@@ -118,63 +118,63 @@ class Canvas extends React.Component {
                     <button
                         onClick={() => this.drawImage("img2", 0, 0, 333, 290, "frame")}
                     >
-                        Draw Frame2
+                        Draw Frame 2
               </button>
                 </p>
                 <p>
                     <button
                         onClick={() => this.drawImage("img3", 0, 0, 333, 290, "frame")}
                     >
-                        Draw Frame
+                        Draw Frame 3
               </button>
                 </p>
                 <p>
                     <button
                         onClick={() => this.drawImage("img4", 0, 0, 333, 290, "frame")}
                     >
-                        Draw Frame2
+                        Draw Frame 4
               </button>
                 </p>
                 <p>
                     <button
                         onClick={() => this.drawImage("img5", 0, 0, 333, 290, "frame")}
                     >
-                        Draw Frame
+                        Draw Frame 5
               </button>
                 </p>
                 <p>
                     <button
                         onClick={() => this.drawImage("img6", 0, 0, 333, 290, "frame")}
                     >
-                        Draw Frame2
+                        Draw Frame 6
               </button>
                 </p>
                 <p>
                     <button
                         onClick={() => this.drawImage("img7", 0, 0, 333, 290, "frame")}
                     >
-                        Draw Frame
+                        Draw Frame 7
               </button>
                 </p>
                 <p>
                     <button
                         onClick={() => this.drawImage("img8", 0, 0, 333, 290, "frame")}
                     >
-                        Draw Frame2
+                        Draw Frame 8
               </button>
                 </p>
                 <p>
                     <button
                         onClick={() => this.drawImage("img9", 0, 0, 333, 290, "frame")}
                     >
-                        Draw Frame
+                        Draw Frame 9
               </button>
                 </p>
                 <p>
                     <button
                         onClick={() => this.drawImage("img10", 0, 0, 333, 290, "frame")}
                     >
-                        Draw Frame2
+                        Draw Frame 10
               </button>
                 </p>
                 <p>
