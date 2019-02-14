@@ -1,3 +1,18 @@
 .canvas-container {
   padding: 89px;
 }
+
+.frame-button{
+    height: 100px;
+    width: 130px;
+}
+
+.frame-button >img{
+    height: 100px;
+    width: 130px;
+}
+
+.frames-box{
+    overflow-y: scroll;
+    height: 300px;
+}

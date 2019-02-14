@@ -16,7 +16,7 @@ class Selfie extends React.Component {
       isFrameSet: false
     };
   }
-  
+
   capture = () => {
     const screenshot = this.webcam.getScreenshot();
     this.setState({ screenshot, step: 2 }, () => {
@@ -54,52 +54,55 @@ class Selfie extends React.Component {
           <div className="row">
             <div className="col">
               <div className="mobile-bg">
-                {
-                  step === 0 ? (
-                    <div className="row">
-                      <div className="col">
-                        <div className="first-screen">
-                          <div className="col-xl-6 col-lg-6 col-md-6 col-xs-12 ">
-                            <div className="first-screen-text-position">
-                              <p className="first-screen-text-heading">
-                                Update Your Profile Picture</p>
-                              <p classNamr="first-screen-text-heading">
-                              With Real-Time Filters
+                <div>
+                  {
+                    step === 0 ? (
+                      <div className="row">
+                        <div className="col">
+                          <div className="first-screen">
+                            <div className="col-xl-6 col-lg-6 col-md-6 col-xs-12 ">
+                              <div className="first-screen-text-position">
+                                <p className="first-screen-text-heading">
+                                  Update Your Profile Picture</p>
+                                <p classNamr="first-screen-text-heading">
+                                  With Real-Time Filters
                         </p>
-                        <div>
-                        <button
-                    className="btn btn-selfie"
-                    type="submit" onClick={() => this.setState({ step: 1 })}
-                  >
-                    TAKE SELFIE
+                                <div>
+                                  <button
+                                    className="btn btn-selfie"
+                                    type="submit" onClick={() => this.setState({ step: 1 })}
+                                  >
+                                    TAKE SELFIE
                   </button>
-                          </div>
-                        </div>
+                                </div>
+                              </div>
+                            </div>
                           </div>
                         </div>
                       </div>
+                    ) : null}
+                  {step === 1 ? (
+
+                    <div className="webcams">
+                      <Webcam
+                        audio={false}
+                        height={450}
+                        ref={this.setRef}
+                        screenshotFormat="image/jpeg"
+                        width={750}
+                        videoConstraints={videoConstraints}
+                      />
+
+                      <button onClick={this.capture}>Capture photo</button>
                     </div>
                   ) : null}
-                    {step === 1 ? (
-                      <div className="webcams">
-                         <Webcam
-                           audio={false}
-                           height={450}
-                           ref={this.setRef}
-                           screenshotFormat="image/jpeg"
-                           width={750}
-                           videoConstraints={videoConstraints}
-                         />
+                  {step === 2 && this.state.screenshot ? (
+                    <div>
+                      <Canvas image={this.state.screenshot} />
+                    </div>
+                  ) : null}
 
-                         <button onClick={this.capture}>Capture photo</button>
-                       </div>
-                    ) : null}
-  {step === 2 && this.state.screenshot ? (
-                      <div>
-                        <Canvas image={this.state.screenshot} />
-                       </div>
-                   ) : null}
-
+                </div>
               </div>
             </div>
           </div>
