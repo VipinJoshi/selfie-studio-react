@@ -80,6 +80,25 @@ class Selfie extends React.Component {
                       </div>
                     </div>
                   ) : null}
+                    {step === 1 ? (
+                      <div className="webcams">
+                         <Webcam
+                           audio={false}
+                           height={450}
+                           ref={this.setRef}
+                           screenshotFormat="image/jpeg"
+                           width={750}
+                           videoConstraints={videoConstraints}
+                         />
+
+                         <button onClick={this.capture}>Capture photo</button>
+                       </div>
+                    ) : null}
+  {step === 2 && this.state.screenshot ? (
+                      <div>
+                        <Canvas image={this.state.screenshot} />
+                       </div>
+                   ) : null}
 
               </div>
             </div>
