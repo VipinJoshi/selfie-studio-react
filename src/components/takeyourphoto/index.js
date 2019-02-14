@@ -35,6 +35,7 @@ class Selfie extends React.Component {
     this.setState({ filter });
   };
 
+
   checkSteps = step => {
     switch (step) {
       case 1: {
@@ -46,7 +47,6 @@ class Selfie extends React.Component {
         return;
       }
       case 3: {
-        alert("final")
         this.setState({ step });
         return;
       }
@@ -72,30 +72,36 @@ class Selfie extends React.Component {
       <div className="container-fluid">
         <div className="bg">
           <div className="row">
-            <div className="col">
-              <div className="mobile-bg">
-                <div>
+            <div className="col padding-top-bottom">
+              <div className="white-bg">
+                {step === 0 ?
+                  <div className="selfi-btn-position">
+                    <div className="first-screen-text-position">
+                      <p className="first-screen-text-heading">
+                        Update Your Profile Picture</p>
+                      <p classNamr="first-screen-text-heading">
+                        With Real-Time Filters
+                        </p>
+                      <div>
+                        <button
+                          className="btn btn-selfie"
+                          type="submit" onClick={() => this.setState({ step: 1 })}
+                        >
+                          TAKE SELFIE
+                  </button>
+                      </div>
+                    </div>
+                  </div> : null
+                }
+
+                <div className="mobile-bg">
                   {
                     step === 0 ? (
                       <div className="row">
                         <div className="col">
                           <div className="first-screen">
                             <div className="col-xl-6 col-lg-6 col-md-6 col-xs-12 ">
-                              <div className="first-screen-text-position">
-                                <p className="first-screen-text-heading">
-                                  Update Your Profile Picture</p>
-                                <p classNamr="first-screen-text-heading">
-                                  With Real-Time Filters
-                        </p>
-                                <div>
-                                  <button
-                                    className="btn btn-selfie"
-                                    type="submit" onClick={() => this.setState({ step: 1 })}
-                                  >
-                                    TAKE SELFIE
-                  </button>
-                                </div>
-                              </div>
+
                             </div>
                           </div>
                         </div>
@@ -116,9 +122,9 @@ class Selfie extends React.Component {
                       <button onClick={this.capture}>Capture photo</button>
                     </div>
                   ) : null}
-                  {(step === 2 || step ===3) && this.state.screenshot ? (
+                  {(step === 2 || step===3) && this.state.screenshot ? (
                     <div>
-                      <Canvas image={this.state.screenshot} step={step} setSteps={(steps)=>this.checkSteps(steps)}  />
+                      <Canvas image={this.state.screenshot} step={step} setSteps={(steps) => this.checkSteps(steps)} />
                     </div>
                   ) : null}
 
@@ -131,7 +137,6 @@ class Selfie extends React.Component {
           </div>
         </div>
       </div>
-
     );
   }
 }

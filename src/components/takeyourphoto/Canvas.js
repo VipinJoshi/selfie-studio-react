@@ -45,7 +45,7 @@ class Canvas extends React.Component {
             download.download = "selfie.png";
         });
     }
-    sendImage(){
+    sendImage() {
         //add logic for email 
         this.props.setSteps(0);
     }
@@ -231,12 +231,12 @@ class Canvas extends React.Component {
                                                     className="form-control"
 
                                                     placeholder="Enter your email id"
-                                                
+
                                                 />
 
                                             </div>
                                         </div>
-                                   <div><button className="btn btn-primary" onClick={()=>this.sendImage()}>Share</button></div>
+                                        <div><button className="btn btn-primary" onClick={() => this.sendImage()}>Share</button></div>
                                     </div>
                                 </div>
                             </div>
@@ -249,7 +249,7 @@ class Canvas extends React.Component {
                                     <button onClick={() => this.props.setSteps(3)}> Next</button>
                                 </div>
                                 <div className="col">
-                                    <button onClick={() => this.props.setSteps(1)}> Redo</button>
+                                    <button className="btn btn-primary" onClick={() => this.props.setSteps(1)}> Redo</button>
                                 </div>
                             </div>
 
