@@ -14,17 +14,17 @@ class Canvas extends React.Component {
         const ctx = canvas.getContext("2d");
         const img = this.refs.image;
         img.onload = () => {
-            ctx.drawImage(img, 0, 0, 333, 290)
+            ctx.drawImage(img, 0, 0, 303, 253)
         }
     }
     drawImage(imageId, x, y, dWidth = 233, dHeight = 183, type) {
         const c = document.getElementById("selfie");
         const context = c.getContext("2d");
+        context.restore();
         if (context) {
             const img = document.getElementById(imageId);
             if (type === "frame" && this.state.isFrameSet) {
                 context.clearRect(0, 0, c.width, c.height);
-                context.restore();
                 this.drawImage("clickedImage", 10, 10, 303, 253);
                 context.drawImage(img, x, y, dWidth, dHeight);
             } else {
@@ -57,7 +57,10 @@ class Canvas extends React.Component {
 
                 <div className="row">
                     <div className="col-xl-6 col-lg-6 col-md-6">
-                        <canvas id="selfie" ref="canvas" width={640} height={525} />
+                    <div>
+                        <canvas id="selfie" ref="canvas" width= {350}
+    height = {425}  />
+                        </div>
                         <img ref="image" id="clickedImage" src={image} className="hidden" style={{ display: "none" }} />
                         <img
                             src={require("./../../images/frame1.png")}

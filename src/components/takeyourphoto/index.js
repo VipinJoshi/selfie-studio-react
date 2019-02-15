@@ -13,7 +13,8 @@ class Selfie extends React.Component {
     this.state = {
       screenshot: null,
       step: 0,
-      isFrameSet: false
+      isFrameSet: false,
+      showLoader: false
     };
   }
 
@@ -39,7 +40,8 @@ class Selfie extends React.Component {
   checkSteps = step => {
     switch (step) {
       case 1: {
-        this.setState({ screenshot: null, step });
+        setInterval(this.setState({ screenshot: null, step,showLoader: true }),2000);
+        this.setState({ showLoader: false });
         return;
       }
       case 2: {
@@ -63,13 +65,9 @@ class Selfie extends React.Component {
       height: 720,
       facingMode: "user"
     };
-    const { step, filter = "none" } = this.state;
+    const { step, filter = "none",showLoader=true } = this.state;
     return (
-      // <div className="container-fluid portrait">
-      //   <img src={require("./../../images/bg.png")}></img>
-
-      // </div>
-      <div className="container-fluid">
+      <div  className={showLoader ? "container-fluid loading" : "container-fluid"}>
         <div className="bg">
           <div className="row">
             <div className="col padding-top-bottom">
@@ -85,7 +83,7 @@ class Selfie extends React.Component {
                       <div>
                         <button
                           className="btn btn-selfie"
-                          type="submit" onClick={() => this.setState({ step: 1 })}
+                          type="submit" onClick={() => this.checkSteps(1)}
                         >
                           TAKE SELFIE
                   </button>
@@ -118,12 +116,13 @@ class Selfie extends React.Component {
                         width={750}
                         videoConstraints={videoConstraints}
                       />
-						<div class="grey-bg">
-                      <button className="capture" onClick={this.capture}></button>
-					  </div>
+                      <div class="grey-bg">
+                        <button className="capture" onClick={this.capture}>
+                        <img src={require("../../images/camera-icon.png")} /></button>
+                      </div>
                     </div>
                   ) : null}
-                  {(step === 2 || step===3) && this.state.screenshot ? (
+                  {(step === 2 || step === 3) && this.state.screenshot ? (
                     <div>
                       <Canvas image={this.state.screenshot} step={step} setSteps={(steps) => this.checkSteps(steps)} />
                     </div>
@@ -137,6 +136,7 @@ class Selfie extends React.Component {
             <SelfieSteps activeStep={step} />
           </div>
         </div>
+        <div className="modal" />
       </div>
     );
   }
