@@ -51,6 +51,7 @@ class Canvas extends React.Component {
 
     render() {
         const { image, step = 2 } = this.props;
+        
         return (
             <div className="canvas-container">
 
@@ -203,20 +204,20 @@ class Canvas extends React.Component {
                                                     Enter email Id
         </label>
                                             </div>
-
-                                            <div className="text-input">
+                                            <div className="input-group mb-3">
                                                 <input
                                                     type="email"
                                                     name="email"
                                                     className="form-control"
-
                                                     placeholder="Enter your email id"
-
                                                 />
-
+                                                <div className="input-group-append">
+                                                    <button className="btn btn-primary" onClick={() => this.sendImage()}>Share</button>
+                                                </div>
                                             </div>
+
                                         </div>
-                                        <div><button className="btn btn-primary" onClick={() => this.sendImage()}>Share</button></div>
+                                        <div></div>
                                     </div>
                                 </div>
                             </div>

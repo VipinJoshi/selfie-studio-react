@@ -68,7 +68,10 @@
   }
 
   .webcams {
-   padding :.5rem 1rem 1 rem;
+   display: flex;
+    /* align-items: center; */
+    min-height: 100%;
+    justify-content: flex-start;
   }
 
 .app-container{
@@ -118,9 +121,7 @@
 }
 
 
-video{
- width: 100%;
-}
+
 
 .mobile-bg {
     background:url(./../../images/mobileframe.png) no-repeat;
@@ -135,9 +136,11 @@ video{
 .mobile-bg .webcams video{
     position: relative;
     top: 6px;
-    left: -63px;
-	min-height: 474px;
-	z-index: -1;
+    left: 13px;
+    min-height: 474px;
+    z-index: -1;
+    /* flex: 0.5; */
+    width: auto;
 }
 .white-bg{
 	background: #fff;
@@ -163,4 +166,22 @@ video{
 	position: absolute;
     z-index: 9;
     width: 386px;
+}
+
+.grey-bg {
+    background: #000;
+    opacity: 0.8;
+    display: flex;
+    justify-content: center;
+    margin: 13px 0 0 14px;
+    min-width: 119px;
+    align-items: center;
+}
+button.capture {
+    width: 70px;
+    height: 70px;
+	border-radius: 50%;
+	background: #fff;
+	border: none;
+	background: url(./../../images/camera-icon.png) no-repeat;
 }

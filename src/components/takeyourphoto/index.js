@@ -118,8 +118,9 @@ class Selfie extends React.Component {
                         width={750}
                         videoConstraints={videoConstraints}
                       />
-
-                      <button onClick={this.capture}>Capture photo</button>
+						<div class="grey-bg">
+                      <button className="capture" onClick={this.capture}></button>
+					  </div>
                     </div>
                   ) : null}
                   {(step === 2 || step===3) && this.state.screenshot ? (

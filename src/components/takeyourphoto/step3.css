@@ -1,29 +1,30 @@
 .canvas-container {
-  padding: 89px;
-}
-
-.frame-button{
-    height: 100px;
-    width: 130px;
-}
-
-.frame-button >img{
-    height: 100px;
-    width: 130px;
-}
-
-.frames-box{
-    overflow-y: scroll;
-    height: 300px;
-}
-
-
-/****** screen 4 */
-.div-label{
-    text-align: left;
-}
-.text-input {
+    padding: 89px;
+  }
   
-  border-radius: 8px;
+  .frame-button{
+      width: 130px;
+  }
   
-}
+  .frame-button >img{
+      height: 160px;
+      width: 130px;
+      padding: 10px 0;
+  }
+  
+  .frames-box{
+      overflow-y: scroll;
+      height: 300px;
+  }
+  
+  
+  /****** screen 4 */
+  .div-label{
+      text-align: left;
+  }
+  .text-input {
+    
+    border-radius: 8px;
+    
+  }
+  
