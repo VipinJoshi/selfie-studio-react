@@ -76,9 +76,9 @@ class Selfie extends React.Component {
                   <div className="selfi-btn-position">
                     <div className="first-screen-text-position">
                       <p className="first-screen-text-heading">
-                        Update Your Profile Picture</p>
-                      <p classNamr="first-screen-text-heading">
-                        With Real-Time Filters
+                        Update your profile pictures</p>
+                      <p className="first-screen-text">
+                        with Real-Time filters
                         </p>
                       <div>
                         <button
@@ -117,7 +117,7 @@ class Selfie extends React.Component {
                         videoConstraints={videoConstraints}
                       />
                       <div class="grey-bg">
-                        <button className="capture" onClick={this.capture}>
+                        <button className="btn capture" onClick={this.capture}>
                         <img src={require("../../images/camera-icon.png")} /></button>
                       </div>
                     </div>
