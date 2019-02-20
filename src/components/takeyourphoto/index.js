@@ -54,6 +54,7 @@ class Selfie extends React.Component {
       }
       default: {
         this.retake();
+        this.setState({showLoader:false})
         return;
       }
     }
@@ -124,7 +125,7 @@ class Selfie extends React.Component {
                   ) : null}
                   {(step === 2 || step === 3) && this.state.screenshot ? (
                     <div>
-                      <Canvas image={this.state.screenshot} step={step} setSteps={(steps) => this.checkSteps(steps)} />
+                      <Canvas image={this.state.screenshot} step={step} setSteps={(steps) => this.checkSteps(steps)} showLoader={(value)=>this.setState({showLoader:value})} />
                     </div>
                   ) : null}
 

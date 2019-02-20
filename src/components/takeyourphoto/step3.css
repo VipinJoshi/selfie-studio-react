@@ -21,10 +21,38 @@
   /****** screen 4 */
   .div-label{
       text-align: left;
+      font-family: "Bahnschrift";
+      font-weight: 300;
+      font-style: normal;
+      padding-left: 12px;
   }
   .text-input {
     
     border-radius: 8px;
     
   }
+
+  .save-n-share {
+  font-family: "Bahnschrift";
+  font-weight: 900;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.6;
+  }
+
+  .form-row {
+    margin-top: 87px;
+    margin-left: 33px;
+  }
+
+  .next {
+    width: 70px;
+    height: 70px;
+	border-radius: 50%;
+	background: #fff;
+	border: none;
+}
+.next_image {
+height: 25px;
+}
   

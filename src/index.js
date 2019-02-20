@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import './index.css';
 //import App from './App';
 import './App.css';
+import "../node_modules/toastr/build/toastr.min.css";
+
 
 import Router from "./components";
 import * as serviceWorker from './serviceWorker';

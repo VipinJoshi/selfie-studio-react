@@ -1,13 +1,39 @@
 import React from "react";
 import "./step3.css"
+import axios from "axios";
+import toastr from "toastr";
 
+
+const URL = "localhost:8080/uploadFile1"; // hosted api end point
+toastr.options = {
+    closeButton: false,
+    debug: false,
+    newestOnTop: false,
+    progressBar: false,
+    positionClass: "toast-top-center",
+    preventDuplicates: false,
+    onclick: null,
+    showDuration: "300",
+    hideDuration: "1000",
+    timeOut: "4000",
+    extendedTimeOut: "1000",
+    showEasing: "swing",
+    hideEasing: "linear",
+    showMethod: "fadeIn",
+    hideMethod: "fadeOut",
+};
 class Canvas extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            isFrameSet: false
+            isFrameSet: false,
+            email: "",
+            validEmail: true,
+            validationMessage: '',
+            showLoader: true
         };
     }
+
 
     componentDidMount() {
         const canvas = this.refs.canvas;
@@ -45,21 +71,75 @@ class Canvas extends React.Component {
         });
     }
     sendImage() {
-        //add logic for email 
-        this.props.setSteps(0);
+        const { showLoader } = this.props;
+        showLoader(true);
+        const { email } = this.state;
+
+        if (email.length === 0) {
+            this.setState({ validEmail: false, validationMessage: "Enter email address" });
+            showLoader(false);
+            return;
+        } else if (
+            /* eslint-disable*/
+            !/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/g.test(
+                email
+            )
+        ) {
+            this.setState({ validEmail: false, validationMessage: "Email format is not correct" });
+            showLoader(false);
+
+            return;
+        }
+        const headers = {
+            "Content-Type": "application/json",
+
+        };
+
+        const canvas = document.getElementById("selfie");
+
+        const params = {
+            file: canvas.toDataURL().replace("data:image/png;base64,", ""),
+            email: email
+        };
+
+        axios.post(URL, params, { header: headers }).then(response => {
+            const { data } = response;
+            if (data && data.statuCode === 200) {
+                toastr.success("Your image is with us you will get the image at your given email id");
+                this.props.setSteps(0);
+                showLoader(false);
+
+            }
+            else {
+                showLoader(false);
+
+                this.setState({ validEmail: false, validationMessage: "we are facing some issue in connecting ahh don't worry enjoy the party you can try it later" })
+            }
+        })
+            .catch(err => {
+                showLoader(false);
+
+                this.setState({ validEmail: false, validationMessage: "we are facing some issue in connecting ahh don't worry enjoy the party you can try it later" })
+            })
+
+
+    }
+
+    onChange = (e) => {
+        this.setState({ email: e.target.value, validEmail: true, validationMessage: '' });
     }
 
     render() {
         const { image, step = 2 } = this.props;
-        
+
         return (
             <div className="canvas-container">
 
                 <div className="row">
                     <div className="col-xl-6 col-lg-6 col-md-6">
-                    <div>
-                        <canvas id="selfie" ref="canvas" width= {350}
-    height = {425}  />
+                        <div>
+                            <canvas id="selfie" ref="canvas" width={350}
+                                height={425} />
                         </div>
                         <img ref="image" id="clickedImage" src={image} className="hidden" style={{ display: "none" }} />
                         <img
@@ -196,11 +276,11 @@ class Canvas extends React.Component {
                         </div>
                         : <div className="col-xl-6 col-lg-6 col-md-6">
                             <div className="row">
-                                <div className="col-xl-12 col-lg-12 col-md-12 text-center">
+                                <div className="col-xl-12 col-lg-12 col-md-12 text-center save-n-share">
                                     Save & Share
                      </div>
                                 <div className="row">
-                                    <div className="col-xl-12 col-lg-12 col-md-12 text-center mt-4">
+                                    <div className="col-xl-12 col-lg-12 col-md-12 text-center form-row">
                                         <div className="form-group">
                                             <div className="div-label">
                                                 <label className="label-text" htmlFor="email">
@@ -213,11 +293,15 @@ class Canvas extends React.Component {
                                                     name="email"
                                                     className="form-control"
                                                     placeholder="Enter your email id"
+                                                    value={this.state.email}
+                                                    onChange={(e) => this.onChange(e)}
                                                 />
                                                 <div className="input-group-append">
-                                                    <button className="btn btn-primary" onClick={() => this.sendImage()}>Share</button>
+                                                    <button className="btn btn-primary" disabled={this.state.email.length === 0} onClick={() => this.sendImage()}>Share</button>
                                                 </div>
+
                                             </div>
+                                            {!this.state.validEmail && <div className="alert alert-danger">{this.state.validationMessage}  </div>}
 
                                         </div>
                                         <div></div>
@@ -230,10 +314,13 @@ class Canvas extends React.Component {
 
                             <div className="row">
                                 <div className="col">
-                                    <button onClick={() => this.props.setSteps(3)}> Next</button>
+                                    <button className="btn next" onClick={() => this.props.setSteps(3)}> 
+                                    <img className="next_image" src={require("../../images/arrow_next.png")} />
+                                    </button>
                                 </div>
                                 <div className="col">
-                                    <button className="btn btn-primary" onClick={() => this.props.setSteps(1)}> Redo</button>
+                                    <button className="btn next"  onClick={() => this.props.setSteps(1)}>
+                                    <img className="next_image" src={require("../../images/refresh.png")} /> </button>
                                 </div>
                             </div>
 

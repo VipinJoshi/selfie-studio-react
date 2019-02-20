@@ -67,6 +67,12 @@
     font-family:"Bahnschrift";
     line-height: 1.6;
   }
+  
+  .btn:disabled {
+    cursor: no-drop;
+    background-color: grey;
+    border-color: grey;
+  }
 
   .webcams {
    display: flex;
