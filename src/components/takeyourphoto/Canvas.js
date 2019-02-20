@@ -139,7 +139,7 @@ class Canvas extends React.Component {
                     <div className="col-xl-6 col-lg-6 col-md-6">
                         <div>
                             <canvas id="selfie" ref="canvas" width={350}
-                                height={425} />
+                                height={300} />
                         </div>
                         <img ref="image" id="clickedImage" src={image} className="hidden" style={{ display: "none" }} />
                         <img
