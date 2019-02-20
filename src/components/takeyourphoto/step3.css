@@ -46,13 +46,16 @@
   }
 
   .next {
-    width: 70px;
-    height: 70px;
+    width: 75px;
+    height: 75px;
 	border-radius: 50%;
 	background: #fff;
 	border: none;
 }
 .next_image {
-height: 25px;
+        height: 25px;
 }
+.refresh_image {
+    height: 30px;
+    }
   

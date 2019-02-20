@@ -320,7 +320,7 @@ class Canvas extends React.Component {
                                 </div>
                                 <div className="col">
                                     <button className="btn next"  onClick={() => this.props.setSteps(1)}>
-                                    <img className="next_image" src={require("../../images/refresh.png")} /> </button>
+                                    <img className="refresh_image" src={require("../../images/refresh.png")} /> </button>
                                 </div>
                             </div>
 
