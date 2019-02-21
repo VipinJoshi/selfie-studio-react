@@ -5,6 +5,10 @@
     width: 100%;
 }
 
+.selfie-step {
+  margin-top: 12px 
+}
+
 .first-screen {
     background: url(./../../images/screen1.png) no-repeat;
     text-align: center;
@@ -193,7 +197,7 @@
 	width:100% !important;
 }
 .padding-top-bottom{
-	padding:180px 0 60px 0;
+	padding: 150px 0 0 0;
 }
 .selfi-btn-position{
 	position: absolute;

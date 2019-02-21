@@ -69,7 +69,9 @@ class Selfie extends React.Component {
     const { step, filter = "none",showLoader=true } = this.state;
     return (
       <div  className={showLoader ? "container-fluid loading" : "container-fluid"}>
+      
         <div className="bg">
+        
           <div className="row">
             <div className="col padding-top-bottom">
               <div className="white-bg">
@@ -133,10 +135,11 @@ class Selfie extends React.Component {
               </div>
             </div>
           </div>
-          <div className="row">
+          <div className="row selfie-step">
             <SelfieSteps activeStep={step} />
-          </div>
+          </div>  
         </div>
+        
         <div className="modal" />
       </div>
     );
