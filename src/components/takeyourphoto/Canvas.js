@@ -134,7 +134,6 @@ class Canvas extends React.Component {
 
         return (
             <div className="canvas-container">
-
                 <div className="row">
                     <div className="col-xl-6 col-lg-6 col-md-6">
                         <div>
@@ -195,6 +194,9 @@ class Canvas extends React.Component {
                     </div>
                     {step === 2 ?
                         <div className="col-xl-5 col-lg-5 col-md-5 frames-box">
+                            <div className="row">
+                            <div className="choose-frame">Choose frame</div>
+                            </div>
                             <div className="row">
                                 <div className="col-xl-6 col-lg-6 col-md-6">
 

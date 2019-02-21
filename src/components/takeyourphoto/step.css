@@ -8,3 +8,8 @@
 .MuiStepLabel-label-52 {
 color: #fff !important;
 }
+
+.MuiStepIcon-root-60.MuiStepIcon-completed-63
+{
+    color: green !important;
+}

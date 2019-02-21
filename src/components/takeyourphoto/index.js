@@ -66,7 +66,7 @@ class Selfie extends React.Component {
       height: 720,
       facingMode: "user"
     };
-    const { step, filter = "none",showLoader=true } = this.state;
+    const { step, showLoader=true } = this.state;
     return (
       <div  className={showLoader ? "container-fluid loading" : "container-fluid"}>
       
@@ -79,9 +79,9 @@ class Selfie extends React.Component {
                   <div className="selfi-btn-position">
                     <div className="first-screen-text-position">
                       <p className="first-screen-text-heading">
-                        Update your profile pictures</p>
+                        Take your selfie</p>
                       <p className="first-screen-text">
-                        with Real-Time filters
+                        select frame 
                         </p>
                       <div>
                         <button
@@ -121,7 +121,7 @@ class Selfie extends React.Component {
                       />
                       <div class="grey-bg">
                         <button className="btn capture" onClick={this.capture}>
-                        <img src={require("../../images/camera-icon.png")} /></button>
+                        <img src={require("../../images/camera-icon.png")} alt="" /></button>
                       </div>
                     </div>
                   ) : null}
