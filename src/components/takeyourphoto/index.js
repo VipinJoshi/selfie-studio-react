@@ -3,6 +3,10 @@ import Webcam from "react-webcam";
 import SelfieSteps from "./SelfieSteps";
 import Canvas from "./Canvas";
 import "./index.css";
+
+let timer;
+
+
 class Selfie extends React.Component {
   setRef = webcam => {
     this.webcam = webcam;
@@ -17,15 +21,13 @@ class Selfie extends React.Component {
       showLoader: false
     };
   }
+ 
 
   capture = () => {
     const screenshot = this.webcam.getScreenshot();
     this.setState({ screenshot, step: 2 }, () => {
-      // this.drawImage("clickedImage", 10, 10, 303, 253);
+      clearTimeout(timer); // to remove the timer
     });
-
-    //this.drawImage("clickedImage", 10, 10, 303, 253);
-
   };
 
   retake = () => {
@@ -35,16 +37,17 @@ class Selfie extends React.Component {
   applyFilter = filter => {
     this.setState({ filter });
   };
-
+  
 
   checkSteps = step => {
     switch (step) {
       case 1: {
-        setInterval(this.setState({ screenshot: null, step,showLoader: true }),2000);
-        this.setState({ showLoader: false });
+        this.setState({ screenshot: null, step,showLoader: true });
+        timer = setInterval(()=>this.setState({ showLoader: false }),2000);
         return;
       }
       case 2: {
+        clearTimeout(timer);
         this.setState({ step });
         return;
       }
@@ -60,6 +63,9 @@ class Selfie extends React.Component {
     }
   }
 
+  showLoader = value => {
+    this.setState({ showLoader: value })
+  }
   render() {
     const videoConstraints = {
       width: 1280,
@@ -127,7 +133,7 @@ class Selfie extends React.Component {
                   ) : null}
                   {(step === 2 || step === 3) && this.state.screenshot ? (
                     <div>
-                      <Canvas image={this.state.screenshot} step={step} setSteps={(steps) => this.checkSteps(steps)} showLoader={(value)=>this.setState({showLoader:value})} />
+                      <Canvas image={this.state.screenshot} step={step} setSteps={(steps) => this.checkSteps(steps)} showLoader={(value)=>this.showLoader(value)} />
                     </div>
                   ) : null}
 

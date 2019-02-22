@@ -4,7 +4,7 @@ import axios from "axios";
 import toastr from "toastr";
 
 
-const URL = "localhost:8080/uploadFile1"; // hosted api end point
+const URL =  "localhost:8080/uploadFile";  //"http://172.18.73.89:8080/uploadFile1"; // hosted api end point
 toastr.options = {
     closeButton: false,
     debug: false,
@@ -87,12 +87,10 @@ class Canvas extends React.Component {
         ) {
             this.setState({ validEmail: false, validationMessage: "Email format is not correct" });
             showLoader(false);
-
             return;
         }
         const headers = {
             "Content-Type": "application/json",
-
         };
 
         const canvas = document.getElementById("selfie");
@@ -101,24 +99,20 @@ class Canvas extends React.Component {
             file: canvas.toDataURL().replace("data:image/png;base64,", ""),
             email: email
         };
-
         axios.post(URL, params, { header: headers }).then(response => {
             const { data } = response;
             if (data && data.statuCode === 200) {
                 toastr.success("Your image is with us you will get the image at your given email id");
                 this.props.setSteps(0);
                 showLoader(false);
-
             }
             else {
                 showLoader(false);
-
                 this.setState({ validEmail: false, validationMessage: "we are facing some issue in connecting ahh don't worry enjoy the party you can try it later" })
             }
         })
             .catch(err => {
                 showLoader(false);
-
                 this.setState({ validEmail: false, validationMessage: "we are facing some issue in connecting ahh don't worry enjoy the party you can try it later" })
             })
 

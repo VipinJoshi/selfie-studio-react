@@ -120,8 +120,8 @@
     left:       0;
     height:     100%;
     width:      100%;
-    background: rgba( 255, 255, 255, .8 ) 
-                url('http://sampsonresume.com/labs/pIkfp.gif') 
+    background: rgba(223, 217, 217, 0.9) 
+                url('./../../images/loader.gif') 
                 50% 50% 
                 no-repeat;
   }
