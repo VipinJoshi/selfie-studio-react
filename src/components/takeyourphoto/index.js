@@ -125,7 +125,7 @@ class Selfie extends React.Component {
                         width={750}
                         videoConstraints={videoConstraints}
                       />
-                      <div class="grey-bg">
+                      <div className="grey-bg">
                         <button className="btn capture" onClick={this.capture}>
                         <img src={require("../../images/camera-icon.png")} alt="" /></button>
                       </div>

@@ -4,7 +4,7 @@ import axios from "axios";
 import toastr from "toastr";
 
 
-const URL =  "localhost:8080/uploadFile";  //"http://172.18.73.89:8080/uploadFile1"; // hosted api end point
+const URL =  "localhost:8080/uploadFile1";  //"http://172.18.73.89:8080/uploadFile1"; // hosted api end point
 toastr.options = {
     closeButton: false,
     debug: false,
